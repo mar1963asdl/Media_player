@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.logging.Logger;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public abstract class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     String localStorageAudioPath;
     ImageButton btn_play;
@@ -31,10 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int pausecurrentposition;
     SeekBar btn_seek;
     MyPhoneStateListener myPhoneStateListener;
-    Timer timer;
     boolean isSeekBarChanging;
-    boolean isCellPlay;
     boolean isFitstInit = true;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         phoneyMana.listen(myPhoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
     }
 
+}
+
+
 
 
 
@@ -97,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     initMediaPlayer();
     }
+
     private void initMediaPlayer()
     {
         File file = new File(localStorageAudioPath);
@@ -224,10 +227,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     protected void onResume(){
+
         super.onResume();
     }
 
-    }
+}
 
 
 
