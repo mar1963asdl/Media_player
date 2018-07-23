@@ -1,5 +1,6 @@
 package com.example.user.music_player;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.telephony.PhoneStateListener;
@@ -15,7 +16,9 @@ public class MyPhoneStateListener extends PhoneStateListener{
     boolean isCellPlay;
     Timer timer;
     ImageButton btn_play;
-    MyPhoneStateListener myPhoneStateListener;
+//    MyPhoneStateListener myPhoneStateListener;
+//    Context context;
+
     @Override
     public void onCallStateChanged(int state, String incomingNumber)
     {
@@ -37,24 +40,5 @@ public class MyPhoneStateListener extends PhoneStateListener{
                 }
                 break;
         }
-    }
-}
-    @Override
-    protected void onDestroy(){
-    if (timer!=null)
-    {
-        timer.cancel();
-        timer.purge();
-        timer = null;
-    }
-    if (mediaPlayer!=null)
-    {
-        mediaPlayer.release();
-        mediaPlayer = null;
-    }
-    TelephonyManager tmgr = (TelephonyManager) getSystemService (Context.TELECOM_SERVICE);
-    tmgr.listen(myPhoneStateListener, 0);
-    super.onDestroy();
-        Toast.showToast(PlayMusicActivity.this,"onDestroy");
     }
 }
